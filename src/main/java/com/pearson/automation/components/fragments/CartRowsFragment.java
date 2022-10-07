@@ -1,6 +1,7 @@
 package com.pearson.automation.components.fragments;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.context.annotation.Lazy;
@@ -26,25 +27,41 @@ public class CartRowsFragment extends AbstractFragment{
     private WebElement qualification;
 
     @FindBy(xpath = ".//div[@class='item__quantity']//input[contains(@class,'js-update-entry-quantity-input')]")
-    private WebElement quantity;
+    private  WebElement quantity;
 
     @FindBy(xpath = ".//div[not(contains(@class,'item__quantity__total hidden'))]//div[@class='item__total js-item-total']")
     private WebElement priceTotal;
 
     @FindBy(xpath = ".//button[@class='btn btn-default js-cartItemDetailBtn']")
-    private WebElement closeButton;
+    private WebElement deleteButton;
+
+    @FindBy(xpath=".//a[@class='js-track-removecartitem']")
+    private WebElement deleteNewButton;
 
     public String getProductByISBNFromCartFragment() {
         return getWebElement("ISBN").getText();
     }
 
     public void clickOnRemoveProductFromCard() {
-        getWebElement("closeButton").click();
+        getWebElement("deleteButton").click();
     }
 
-    public String getQuantityForProductFromCartFragment() {
-       return getWebElement("quantity").getText();
+    public void clickOnRemoveProductFromCartButton() {
+        getWebElement("deleteNewButton").click();
     }
+
+
+
+    public  int getProductQuantity() {
+        return Integer.parseInt(getWebElement("quantity").getAttribute("value"));
+    }
+
+    public  void insertQuantity(String value) {
+        getWebElement("quantity").clear();
+        getWebElement("quantity").sendKeys(value);
+        getWebElement("quantity").sendKeys(Keys.ENTER);
+    }
+
 
 
 

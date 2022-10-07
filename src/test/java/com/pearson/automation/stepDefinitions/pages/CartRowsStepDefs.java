@@ -20,8 +20,8 @@ public class CartRowsStepDefs {
     cartPage.checkSaveCartButtonIsEnabled();
 }
 
-    @And("^Cart Page: Update quantity for product '(.*)'$")
-    public void update_quantity_for_product(String isbn) {
-        cartPage.updateQuantityForAProductFromCart(isbn);
+    @And("^Cart Page: Update quantity for product '(.*)' with value '(.*)'$")
+    public void update_quantity_for_product(String isbn,String value) {
+        cartPage.updateQuantityForAProductFromCart(isbn, value);
     }
 }

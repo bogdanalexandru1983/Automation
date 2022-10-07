@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+
 import java.util.List;
 
 @Lazy
@@ -40,6 +41,7 @@ public class CartPage extends AbstractPage {
     }
     public void DeleteRowFromCart (String isbn){
         getProductByISBNFromCart(isbn).clickOnRemoveProductFromCard();
+        getProductByISBNFromCart(isbn).clickOnRemoveProductFromCartButton();
     }
 
     public boolean checkSaveCartButtonIsEnabled(){
@@ -52,15 +54,15 @@ public class CartPage extends AbstractPage {
         }
     }
 
-    public CartRowsFragment getQuantityFromProductFromcart(String isbn) {
-        return cartRows().stream()
-                .filter(element -> element.getQuantityForProductFromCartFragment().)
-                .findFirst()
-                .orElseThrow(()->new IllegalArgumentException("Unable to find quantity for ISBN "+isbn));
+    public int getQuantityFromProductFromcart(String isbn) {
+        return getProductByISBNFromCart(isbn).getProductQuantity();
+
+
     }
 
-    public void updateQuantityForAProductFromCart(String isbn) {
+    public void updateQuantityForAProductFromCart(String isbn,String value) {
         System.out.println(getQuantityFromProductFromcart(isbn));
-        getQuantityFromProductFromcart(isbn).sendKeys("4");
+        getProductByISBNFromCart(isbn).insertQuantity(value);
+        System.out.println(getQuantityFromProductFromcart(isbn));
     }
 }

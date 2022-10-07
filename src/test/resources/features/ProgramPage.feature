@@ -15,13 +15,13 @@ Feature: product test
     Given Home Page: Customer insert on search bar: Positive and Negative Syndrome Scale
     Then Program Page: Customer is redirected to the product page for Positive and Negative Syndrome Scale
     And Program Page: Customer click on 'All products' card type
-    Then Program Page: Customer click on Add to cart button for product 'A103000066631'
+    Then Program Page: Customer click on Add to cart button for product 'A103000066634'
     And small cart page is opened
     And Customer click on view cart
 
-    And Cart Page: Customer click delete product 'A103000066634' from cart
+  #  And Cart Page: Customer click delete product 'A103000066634' from cart
     And Cart Page: Check save cart button is enabled
-    And Cart Page: Update quantity for product 'A103000066631'
+    And Cart Page: Update quantity for product 'A103000066631' with value '5'
 
 
     #A103000066634
